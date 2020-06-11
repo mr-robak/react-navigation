@@ -1,0 +1,64 @@
+{
+  "name": "@react-navigation/devtools",
+  "description": "Developer tools for React Navigation",
+  "version": "5.0.0",
+  "keywords": [
+    "react",
+    "react-native",
+    "react-navigation"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/react-navigation/react-navigation/tree/master/packages/devtools",
+  "bugs": {
+    "url": "https://github.com/react-navigation/react-navigation/issues"
+  },
+  "homepage": "https://reactnavigation.org",
+  "main": "lib/commonjs/index.js",
+  "react-native": "src/index.tsx",
+  "source": "src/index.tsx",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/src/index.d.ts",
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepare": "bob build",
+    "clean": "del lib"
+  },
+  "dependencies": {
+    "@react-navigation/core": "^5.10.0",
+    "@types/deep-equal": "^1.0.1",
+    "deep-equal": "^2.0.3"
+  },
+  "devDependencies": {
+    "@react-native-community/bob": "^0.14.3",
+    "@types/react": "^16.9.34",
+    "del-cli": "^3.0.0",
+    "react": "~16.9.0",
+    "react-native-testing-library": "^1.13.2",
+    "react-test-renderer": "~16.13.1",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  }
+}

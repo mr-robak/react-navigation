@@ -27,6 +27,7 @@ import {
   DefaultTheme,
   DarkTheme,
   PathConfig,
+  NavigationContainerRef,
 } from '@react-navigation/native';
 import {
   createDrawerNavigator,
@@ -37,6 +38,7 @@ import {
   StackNavigationProp,
   HeaderStyleInterpolators,
 } from '@react-navigation/stack';
+import { useReduxDevToolsExtension } from '@react-navigation/devtools';
 
 import { restartApp } from './Restart';
 import AsyncStorage from './AsyncStorage';
@@ -192,6 +194,10 @@ export default function App() {
     return () => Dimensions.removeEventListener('change', onDimensionsChange);
   }, []);
 
+  const navigationRef = React.useRef<NavigationContainerRef>(null);
+
+  useReduxDevToolsExtension(navigationRef);
+
   if (!isReady) {
     return null;
   }
@@ -204,6 +210,7 @@ export default function App() {
         <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
       )}
       <NavigationContainer
+        ref={navigationRef}
         initialState={initialState}
         onStateChange={(state) =>
           AsyncStorage.setItem(
